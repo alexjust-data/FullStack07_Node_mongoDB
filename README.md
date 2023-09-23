@@ -1,4 +1,11 @@
+
+
 # Fundamentos-Backend-Node.js-y-MongoDB
+
+## node.js
+&nbsp;
+&nbsp;
+
 
 **ADMINISTRADOR DE VERSIONES**
 
@@ -109,6 +116,153 @@ npm install -g <paquete>
 ```
 
 Si el paquete tiene ejecutables hará un vínculo a ellos en /usr/local/ bin
+
+
+---
+&nbsp;
+&nbsp;
+## Express.js
+
+Express es un framework web para Node.js http://expressjs.com/ , para hacer servidores para http. Podemos revisar toda la funcionalidad en:
+http://expressjs.com/api.html
+
+
+**Usando Express Generator**
+
+Express Generator nos crea una estructura base para una aplicación.
+
+```bash
+$ [sudo] npm install express-generator -g
+$ express -h  # nos dará la lista de opciones
+$ express <nombreApp> [--ejs]
+$ cd <nombreApp>
+$ npm install
+```
+pero lo ideal es 
+
+```bash
+# así controlarás las versiones automaticamente
+$ npx express-generator
+$ express
+```
+
+Como arrancar nuestra aplicación:
+
+```bash
+$ npm start
+
+# entorno desarrollo, puerto por defecto (3000)
+
+```
+
+
+Podemos establecer variables de entorno para variar la forma de arranque:
+
+```bash
+$ NODE_ENV=production npm start
+
+# entorno producción
+```
+
+Podemos establecer variables de entorno para variar la forma de arranque:
+
+```bash
+$ DEBUG=nombreApp:* PORT=3001 NODE_ENV=production npm start
+
+# con log debug activado
+# puerto 3001
+# entorno producción
+```
+
+Si queremos podríamos incluir esto en el comando start de npm, especificándolo en el package.json
+
+```bash
+npm install --save-dev nodemon cross-env
+...
+  "scripts": {
+    "dev": "DEBUG=nombreApp:* PORT=3000 nodemon"
+  },
+...
+```
+
+ejemplo
+
+```bash
+ # Creo desde terminal archivo package.json con las dependencias en ejemplo-express/
+ $ cd ejemplo-express/
+ $ npm init -y               # creo package.json
+ $ npm install express       # le añado una dependencia    "dependencies": {"express": "^4.18.2"}
+ $ npx nodemon index.js 
+```
+
+creando una aplicación
+
+```bash
+$ cd ..
+$ cd FULLSTACK_NODE_MONGODB
+$ npx express-generator --ejs <nombre_aplicacion>
+$ npx express-generator --ejs nodeapp
+# ha creado la app en la carpeta nodeapp
+# ha definido unas dependencias en package.json
+$ cd nodeapp
+$ npm install # instalo las dependencias que necesito
+# ha instalado carpeta node_modules
+```
+
+si yo ahora pusiera directamente 
+
+```bash
+$ npm start
+
+# se iría a leer packeage.json "scripts": {"start": "node ./bin/www"}
+# y ejecutaría el path, arrancaría la app http://127.0.0.1:3000
+```
+
+Arrancamos desde mac
+
+```bash
+$ DEBUG=<nombre_aplicacion>:* npm start
+$ DEBUG=nodeapp:* npm start
+
+# añado en packeage.json "dev": "cross-env DEBUG=nodeapp:* nodemon ./bin/www"
+
+$ npm install nodemon
+$ npm i nodemon # es lo mismo
+
+# en produccion no me hará falta esta dependencia, entonces es mejor instalarla en devDependencies
+
+  "Dependencies": {
+    "cookie-parser": "~1.4.4",
+    "nodemon": "^3.0.1"
+  }
+
+# lo quito de dependencies
+npm uninstall nodemon
+# lo instalo en dependencias de desarrollador
+npm i nodemon --save-dev
+
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+
+
+npm install cross-env
+# crea
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.0.1"
+  }
+
+# le pongo cross-env en "dev": "cross-env DEBUG=nodeapp:* nodemon ./bin/www"
+# esto hará que funcione en cualquier sistema operativo, linus, microsoft , etc
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "cross-env DEBUG=nodeapp:* nodemon ./bin/www"
+  },
+
+```
+
+
 
 
 
