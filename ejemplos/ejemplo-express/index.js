@@ -1,6 +1,7 @@
 
 /**
  * Creo desde terminal archivo package.json con las dependencias en ejemplo-express/
+ * cd ejemplo-express/
  * npm init -y 
  * npm install express
  * npx nodemon index.js 

@@ -36,6 +36,7 @@ luis.saluda();
 // Herencia simple --------------------------
 console.log("Herencia simple ------------------")
 
+
 function Agente(nombre) {
     // heredar el constructor de las Personas
     // ejecutar el constructor de las Personas con mi "this"
@@ -50,8 +51,14 @@ const smith = new Agente('Smith');
 smith.saluda();
   
 
+
+
+
+
+
 // Herencia múltiple ------------------
 console.log("Herencia múltiple ------------------")
+
 
 // Quiero que los agentes hereden tanto de las personas, como de los superheroes
 // copiar todas las propiedades de los Superheroes al prototipo del Agente
