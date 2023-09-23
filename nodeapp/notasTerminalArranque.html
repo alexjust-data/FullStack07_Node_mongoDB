@@ -1,0 +1,285 @@
+(base) alex@Alexs-MacBook-Pro FullStack_Node_mongoDB % pwd
+/Users/alex/Desktop/FullStack_Node_mongoDB
+(base) alex@Alexs-MacBook-Pro FullStack_Node_mongoDB % cd ejemplos 
+(base) alex@Alexs-MacBook-Pro ejemplos % cd ejemplo-express 
+(base) alex@Alexs-MacBook-Pro ejemplo-express % npm init -y            
+Wrote to /Users/alex/Desktop/FullStack_Node_mongoDB/ejemplos/ejemplo-express/package.json:
+
+{
+  "name": "ejemplo-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
+
+(base) alex@Alexs-MacBook-Pro ejemplo-express % npm install express
+
+added 58 packages, and audited 59 packages in 3s
+
+8 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+(base) alex@Alexs-MacBook-Pro ejemplo-express % pwd        
+/Users/alex/Desktop/FullStack_Node_mongoDB/ejemplos/ejemplo-express
+(base) alex@Alexs-MacBook-Pro ejemplo-express % npx nodemon index.js 
+[nodemon] 3.0.1
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `node index.js`
+[nodemon] clean exit - waiting for changes before restart
+[nodemon] restarting due to changes...
+[nodemon] starting `node index.js`
+Servidor HTTP arrancado en http://127.0.0.1:8000
+^C%                                                                                                                                                  
+(base) alex@Alexs-MacBook-Pro ejemplo-express % npx nodemon index.js
+[nodemon] 3.0.1
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `node index.js`
+Servidor HTTP arrancado en http://127.0.0.1:8000
+^C%                                                                                                                                                  
+(base) alex@Alexs-MacBook-Pro ejemplo-express % npx nodemon index.js
+[nodemon] 3.0.1
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `node index.js`
+Servidor HTTP arrancado en http://127.0.0.1:8000
+^C%                                                                                                                                                  
+(base) alex@Alexs-MacBook-Pro ejemplo-express % cd ..
+(base) alex@Alexs-MacBook-Pro ejemplos % pwd
+/Users/alex/Desktop/FullStack_Node_mongoDB/ejemplos
+(base) alex@Alexs-MacBook-Pro ejemplos % cd ..
+(base) alex@Alexs-MacBook-Pro FullStack_Node_mongoDB % pwd
+/Users/alex/Desktop/FullStack_Node_mongoDB
+(base) alex@Alexs-MacBook-Pro FullStack_Node_mongoDB % npx express-generator -h
+Need to install the following packages:
+express-generator@4.16.1
+Ok to proceed? (y) n
+npm ERR! canceled
+
+npm ERR! A complete log of this run can be found in: /Users/alex/.npm/_logs/2023-09-20T17_13_50_780Z-debug-0.log
+(base) alex@Alexs-MacBook-Pro FullStack_Node_mongoDB % npx express-generator --ejs
+Need to install the following packages:
+express-generator@4.16.1
+Ok to proceed? (y) y
+npm WARN deprecated mkdirp@0.5.1: Legacy versions of mkdirp are no longer supported. Please update to mkdirp 1.x. (Note that the API surface has changed to use Promises in 1.x.)
+
+  warning: option `--ejs' has been renamed to `--view=ejs'
+
+destination is not empty, continue? [y/N] N
+aborting
+(base) alex@Alexs-MacBook-Pro FullStack_Node_mongoDB % npx express-generator -h   
+
+  Usage: express [options] [dir]
+
+  Options:
+
+        --version        output the version number
+    -e, --ejs            add ejs engine support
+        --pug            add pug engine support
+        --hbs            add handlebars engine support
+    -H, --hogan          add hogan.js engine support
+    -v, --view <engine>  add view <engine> support (dust|ejs|hbs|hjs|jade|pug|twig|vash) (defaults to jade)
+        --no-view        use static html instead of view engine
+    -c, --css <engine>   add stylesheet <engine> support (less|stylus|compass|sass) (defaults to plain css)
+        --git            add .gitignore
+    -f, --force          force on non-empty directory
+    -h, --help           output usage information
+(base) alex@Alexs-MacBook-Pro FullStack_Node_mongoDB % npx express-generator --ejs
+
+  warning: option `--ejs' has been renamed to `--view=ejs'
+
+destination is not empty, continue? [y/N] N
+aborting
+(base) alex@Alexs-MacBook-Pro FullStack_Node_mongoDB % npx express-generator --ejs nodeapp
+
+  warning: option `--ejs' has been renamed to `--view=ejs'
+
+
+   create : nodeapp/
+   create : nodeapp/public/
+   create : nodeapp/public/javascripts/
+   create : nodeapp/public/images/
+   create : nodeapp/public/stylesheets/
+   create : nodeapp/public/stylesheets/style.css
+   create : nodeapp/routes/
+   create : nodeapp/routes/index.js
+   create : nodeapp/routes/users.js
+   create : nodeapp/views/
+   create : nodeapp/views/error.ejs
+   create : nodeapp/views/index.ejs
+   create : nodeapp/app.js
+   create : nodeapp/package.json
+   create : nodeapp/bin/
+   create : nodeapp/bin/www
+
+   change directory:
+     $ cd nodeapp
+
+   install dependencies:
+     $ npm install
+
+   run the app:
+     $ DEBUG=nodeapp:* npm start
+
+(base) alex@Alexs-MacBook-Pro FullStack_Node_mongoDB % pwd
+/Users/alex/Desktop/FullStack_Node_mongoDB
+(base) alex@Alexs-MacBook-Pro FullStack_Node_mongoDB % cd nodeapp 
+(base) alex@Alexs-MacBook-Pro nodeapp % npm install
+
+added 54 packages, and audited 55 packages in 6s
+
+4 vulnerabilities (3 high, 1 critical)
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+(base) alex@Alexs-MacBook-Pro nodeapp % npm start
+
+> nodeapp@0.0.0 start
+> node ./bin/www
+
+GET / 200 11.265 ms - 207
+GET /stylesheets/style.css 200 7.374 ms - 111
+GET /favicon.ico 404 2.973 ms - 1203
+^C
+(base) alex@Alexs-MacBook-Pro nodeapp % DEBUG=nodeapp:* npm start
+
+> nodeapp@0.0.0 start
+> node ./bin/www
+
+  nodeapp:server Listening on port 3000 +0ms
+GET / 304 10.086 ms - -
+GET /stylesheets/style.css 304 2.948 ms - -
+GET / 304 2.027 ms - -
+GET /stylesheets/style.css 304 5.560 ms - -
+^C
+(base) alex@Alexs-MacBook-Pro nodeapp % npm i nodemon
+
+added 34 packages, and audited 89 packages in 6s
+
+3 packages are looking for funding
+  run `npm fund` for details
+
+4 vulnerabilities (3 high, 1 critical)
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+(base) alex@Alexs-MacBook-Pro nodeapp % pwd
+/Users/alex/Desktop/FullStack_Node_mongoDB/nodeapp
+(base) alex@Alexs-MacBook-Pro nodeapp % npm uninstall nodemon   
+
+removed 34 packages, and audited 55 packages in 4s
+
+4 vulnerabilities (3 high, 1 critical)
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+(base) alex@Alexs-MacBook-Pro nodeapp % npm i nodemon --save-dev
+
+added 34 packages, and audited 89 packages in 4s
+
+3 packages are looking for funding
+  run `npm fund` for details
+
+4 vulnerabilities (3 high, 1 critical)
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+(base) alex@Alexs-MacBook-Pro nodeapp % npm i cross-env
+
+added 7 packages, and audited 96 packages in 1s
+
+3 packages are looking for funding
+  run `npm fund` for details
+
+4 vulnerabilities (3 high, 1 critical)
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+(base) alex@Alexs-MacBook-Pro nodeapp % npm i cross-env
+
+up to date, audited 96 packages in 870ms
+
+3 packages are looking for funding
+  run `npm fund` for details
+
+4 vulnerabilities (3 high, 1 critical)
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+(base) alex@Alexs-MacBook-Pro nodeapp % pwd
+/Users/alex/Desktop/FullStack_Node_mongoDB/nodeapp
+(base) alex@Alexs-MacBook-Pro nodeapp % npm run dev
+
+> nodeapp@0.0.0 dev
+> cross-env DEBUG=nodeapp:* nodemon ./bin/www
+
+[nodemon] 3.0.1
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `node ./bin/www`
+  nodeapp:server Listening on port 3000 +0ms
+GET / 304 17.489 ms - -
+GET /stylesheets/style.css 304 6.455 ms - -
+^C%                                                                                                                                                  
+(base) alex@Alexs-MacBook-Pro nodeapp % npm uninstall cross-env 
+
+removed 7 packages, and audited 89 packages in 2s
+
+3 packages are looking for funding
+  run `npm fund` for details
+
+4 vulnerabilities (3 high, 1 critical)
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+(base) alex@Alexs-MacBook-Pro nodeapp % npm i cross-env --save-dev
+
+added 7 packages, and audited 96 packages in 1s
+
+3 packages are looking for funding
+  run `npm fund` for details
+
+4 vulnerabilities (3 high, 1 critical)
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+(base) alex@Alexs-MacBook-Pro nodeapp % npm run dev
+
+> nodeapp@0.0.0 dev
+> cross-env DEBUG=nodeapp:* nodemon ./bin/www
+
+[nodemon] 3.0.1
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,cjs,json
+[nodemon] starting `node ./bin/www`
+  nodeapp:server Listening on port 3000 +0ms

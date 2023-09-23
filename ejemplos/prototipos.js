@@ -47,7 +47,6 @@ function Agente(nombre) {
 Object.setPrototypeOf(Agente.prototype, Persona.prototype);
 
 const smith = new Agente('Smith');
-
 smith.saluda();
   
 
@@ -57,18 +56,16 @@ console.log("Herencia múltiple ------------------")
 // Quiero que los agentes hereden tanto de las personas, como de los superheroes
 // copiar todas las propiedades de los Superheroes al prototipo del Agente
 
-
 function Superheroe() {                                             // Definir una función constructora para Superheroe
     this.vuela = function() { console.log(this.nombre, 'vuela'); }  // Método "vuela" que imprime el mensaje
   }
   
  
 Object.assign(Agente.prototype, new Superheroe());  // Asignar las propiedades de una nueva instancia de Superheroe al prototipo de Agente
-
-smith.vuela();  // llama al método "vuela" en el objeto "smith"
+smith.vuela();                                      // llama al método "vuela" en el objeto "smith"
 
 
 console.log(smith);
 console.log(Agente.prototype);
-console.log(Persona.prototype);
+console.log(Persona.prototype);                     // { saluda: [Function (anonymous)] } Herede de los Agentes
   
