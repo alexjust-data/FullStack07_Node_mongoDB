@@ -299,6 +299,42 @@ para arrancar, pues vete a ver el archivo y verás los **middlewares**. Los midd
 Debe **responder** a la petición (cuando un middelware responde ya no se evalúa ninguno más porque ya ha respondido) o llamar a **next()**, pero no hace más cosas. Además usan callbacks por defecto. Y si llamas a next() seguirá evaluando el siguiente middelware... pero cuando intente responder por segunda vez : `Cannot set headers after they are sento to the client`. En el browser no verásnada, pero si en la terminal.
 
 
+### Vistas
+
+ejemplo
+
+```JS
+// /routes/index.js
+
+/* GET home page. */
+router.get('/', function(req, res, next) {
+
+  // añado esta linea
+  res.locals.texto = 'Hola';
+  
+  res.render('index');
+});
+```
+
+abro la vista index.ejs y añado la linea que quiero ver `<p><%= texto %></p> `
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    
+    <p><%= texto %></p> 
+
+  </body>
+</html>
+```
+
 
 
 

@@ -7,5 +7,35 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+    
+    <!-- Ejemplo 1-->
+    <p><%= texto %></p> 
+    <p><%= texto + '!' %></p> 
+    
+    <!-- Ejemplo 2 :
+         si añado el + los iyectará
+         si no lo bloqueará por seguridad -->
+    <p><% + nombre %></p> 
+    
+    <!-- Ejemplo 3-->
+    <h2>Condicionales</h2>
+      <% if (esPar) { %>
+        <p>El segundo actual es par</p> 
+      <% } else { %>
+        <p>El segundo actual es impar</p> 
+      <% } %>
+
+    <p>Segundo actual : <%= segundoActual %></p>
+
+
+    <!-- Ejemplo 3-->
+    <% usuarios.forEach(usuario => { %>
+      <p>El agente <%= usuario.nombre %>
+         tiene <%= usuario.edad %> años.
+      </p> 
+    <% }) %>  
+
+
+
   </body>
 </html>
