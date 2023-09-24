@@ -221,13 +221,22 @@ $ npm start
 Arrancamos desde mac
 
 ```bash
-$ DEBUG=<nombre_aplicacion>:* npm start
+# DEBUG=<nombre_aplicacion>:* npm start
 $ DEBUG=nodeapp:* npm start
 
-# añado en packeage.json "dev": "cross-env DEBUG=nodeapp:* nodemon ./bin/www"
+# podemos arrancar desde terminal con 
+$ npx nodemon ./bin/www
 
-$ npm install nodemon
-$ npm i nodemon # es lo mismo
+# podemos arrancar añadiendo en package.json :
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "nodemon ./bin/www"
+
+$ npm i
+
+
+# podemos también instalar nodemon
+$ npm install nodemon # npm i nodemon (es lo mismo)
 
 # en produccion no me hará falta esta dependencia, entonces es mejor instalarla en devDependencies
 
@@ -245,7 +254,10 @@ npm i nodemon --save-dev
     "nodemon": "^3.0.1"
   }
 
+# Arrancamos ahora con modemon
+$ npm run dev
 
+# esto hará que funcione en cualquier platadorma
 npm install cross-env
 # crea
   "devDependencies": {
@@ -253,15 +265,38 @@ npm install cross-env
     "nodemon": "^3.0.1"
   }
 
-# le pongo cross-env en "dev": "cross-env DEBUG=nodeapp:* nodemon ./bin/www"
+# le pongo cross-env en "dev": 
+# "cross-env DEBUG=nodeapp:* nodemon ./bin/www"
 # esto hará que funcione en cualquier sistema operativo, linus, microsoft , etc
   "scripts": {
     "start": "node ./bin/www",
     "dev": "cross-env DEBUG=nodeapp:* nodemon ./bin/www"
   },
 
+
+# arrancamos http://127.0.0.1:3000 a través de ./bin/www
+npm run dev   
+
 ```
 
+Podemos establecer variables de entorno para variar la forma de arranque:
+
+```bash
+$ DEBUG=nombreApp:* PORT=3001 NODE_ENV=production npm start
+# con log debug activado
+# puerto 3001
+# entorno producción
+```
+
+en ./bin/www podemos ver que usa
+
+```bash
+var app = require('../app');
+```
+
+para arrancar, pues vete a ver el archivo y verás los **middlewares**. Los middelware son toda aquella pieza o bloques de código que se ejecuta en el trancurso de una petición hasta que responde. Los dividmos por funcionalidades. 
+
+Debe **responder** a la petición (cuando un middelware responde ya no se evalúa ninguno más porque ya ha respondido) o llamar a **next()**, pero no hace más cosas. Además usan callbacks por defecto. Y si llamas a next() seguirá evaluando el siguiente middelware... pero cuando intente responder por segunda vez : `Cannot set headers after they are sento to the client`. En el browser no verásnada, pero si en la terminal.
 
 
 
