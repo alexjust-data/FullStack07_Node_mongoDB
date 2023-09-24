@@ -308,31 +308,57 @@ ejemplo
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-  // añado esta linea
+  
+  // 2jemplo 1
   res.locals.texto = 'Hola';
+  // ejemplo 2
+  res.locals.nombre = '<script>alert("inyeccion codigo")</script>';
+  // ejemplo 3
+  const ahora = new Date();
+  res.locals.esPar = (ahora.getSeconds() % 2) === 0;
+  res.locals.segundoActual = ahora.getSeconds();
+  // ejemplo 4
+  res.locals.usuarios = [
+    { nombre: "Smith", edad: 32 },
+    { nombre: "John", edad: 3 }
+  ]
   
   res.render('index');
+  // le puse esto
+  // app.locals.title = "NodeApp - mi aplicación"
 });
 ```
 
-abro la vista index.ejs y añado la linea que quiero ver `<p><%= texto %></p> `
+abro la vista `views/index.ejs` y añado la linea que quiero ver `<p><%= texto %></p> `
 
 ```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    
-    <p><%= texto %></p> 
 
-  </body>
-</html>
+    <!-- Ejemplo 1-->
+    <p><%= texto %></p> 
+    <p><%= texto + '!' %></p> 
+    
+    <!-- Ejemplo 2 :
+         si añado el + los iyectará
+         si no lo bloqueará por seguridad -->
+    <p><% + nombre %></p> 
+    
+    <!-- Ejemplo 3-->
+    <h2>Condicionales</h2>
+      <% if (esPar) { %>
+        <p>El segundo actual es par</p> 
+      <% } else { %>
+        <p>El segundo actual es impar</p> 
+      <% } %>
+
+    <p>Segundo actual : <%= segundoActual %></p>
+
+
+    <!-- Ejemplo 3-->
+    <% usuarios.forEach(usuario => { %>
+      <p>El agente <%= usuario.nombre %>
+         tiene <%= usuario.edad %> años.
+      </p> 
+    <% }) %>  
 ```
 
 
