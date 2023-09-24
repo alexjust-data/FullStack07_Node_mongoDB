@@ -11,19 +11,27 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 
-// middlewares
+// definimos una variable vista que estará 
+// disponible en todos losrender que hagamos
+app.locals.title = "NodeApp - mi aplicación"
+
+// middlewares : es lo primero que hará la app por orden de linea
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// yo puedo crear middelwares:
+
 // app.use((req, res, next) => {
 //   console.log('Ha llegado una petición a', req.url);
 //   next('zzz');
 // });
 
+// carga ./routes/index cuando llegues a /
 app.use('/', require('./routes/index'));
+// carga ./routes/index cuando llegues a /users
 app.use('/users', require('./routes/users'));
 
 // catch 404 and forward to error handler
