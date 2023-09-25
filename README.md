@@ -338,9 +338,9 @@ abro la vista `views/index.ejs` y añado la linea que quiero ver `<p><%= texto %
     <p><%= texto + '!' %></p> 
     
     <!-- Ejemplo 2 :
-         si añado el + los iyectará
-         si no lo bloqueará por seguridad -->
-    <p><% + nombre %></p> 
+         el valor será escapado para evitar la inyección. Si queremos incluir html usaríamos <%- %>
+    -->
+    <p><%- nombre %></p> 
     
     <!-- Ejemplo 3-->
     <h2>Condicionales</h2>
@@ -353,14 +353,80 @@ abro la vista `views/index.ejs` y añado la linea que quiero ver `<p><%= texto %
     <p>Segundo actual : <%= segundoActual %></p>
 
 
-    <!-- Ejemplo 3-->
+    <!-- Ejemplo 4-->
     <% usuarios.forEach(usuario => { %>
       <p>El agente <%= usuario.nombre %>
          tiene <%= usuario.edad %> años.
       </p> 
     <% }) %>  
+
+
+    <!-- Ejemplo 5
+         He creado un archivo nuevo cabecera.ejs
+    -->
+    <% include cabecera.ejs %>
 ```
 
+Has de intentar meter la menor funcionalidad en las vistas, las funcionalidades han de estar en otro lado, en el **modelo**, y si no se puede en el modelo en el **controlador** y por último si no podemos lo metemos en la **vista**. En las vistas usa html, css, cosas de las vistas pero no codigo que pueda fallar.
+
+### Recibiendo parámetros
+
+http://127.0.0.1:3000/facturas/27
+
+
+route/index.js
+
+```JS
+/**
+ * creo un middelware en /route/index.js
+ * al valor numero 66 de  /parametro_en_ruta/66
+ * le podemos llamar por ejemplo numero:
+ * '/parametro_en_ruta/:numero'
+ */
+
+// Get /parametro_en_ruta/66
+router.get('/parametro_en_ruta/:numero', (req, res, next) => {
+  // la varibale la sacamos de la petición req
+  // .numero viene de :numero
+  const numero = req.params.numero;
+
+  // nos res responderá al browser esta frase.
+  res.send("he recibido el número: " + numero);
+})
+
+
+
+/**
+ * Creamos otro middelware con un parámetro opcional
+ * Opcional quiere decir que puede venir o no un valor 
+ */
+
+// Get /parametro_opcional/66
+router.get('/parametro_en_ruta/:numero?', (req, res, next) => {
+  // la varibale la sacamos de la petición req
+  // .numero viene de :numero
+  const numero = req.params.numero;
+
+  // nos res responderá al browser esta frase.
+  res.send("OPCIONAL : he recibido el número: " + numero);
+})
+
+
+
+/**
+ * Creamos otro middelware con varios parámetros 
+ */
+// GET /producto/:nombre/talla/:talla/color/:color
+router.get("/producto/:nombre/talla/:talla/color/:color", (req, res, next) => {
+  console.log(req.params)
+  const nombre = req.params.nombre;
+  const talla = req.params.talla;
+  const color = req.params.color;
+  res.send(`Me pedista ${nombre} talla ${talla} color ${color}`)
+
+})
+
+```
 
 
 
