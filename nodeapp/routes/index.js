@@ -59,6 +59,9 @@ router.get('/parametro_en_ruta/:numero?', (req, res, next) => {
 })
 
 
+/**
+ * Creamos otro middelware con varios parámetros 
+ */
 
 // GET /producto/:nombre/talla/:talla/color/:color
 router.get("/producto/:nombre/talla/:talla/color/:color", (req, res, next) => {
@@ -66,10 +69,8 @@ router.get("/producto/:nombre/talla/:talla/color/:color", (req, res, next) => {
   const nombre = req.params.nombre;
   const talla = req.params.talla;
   const color = req.params.color;
-  res.send(`Me pedista ${nombre} talla ${talla} color ${color}`)
+  res.send(`Me pediste ${nombre} talla ${talla} color ${color}`)
 
 })
-
-
 
 module.exports = router;

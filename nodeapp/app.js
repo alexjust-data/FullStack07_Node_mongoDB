@@ -18,7 +18,7 @@ app.locals.title = "NodeApp - mi aplicación"
 // middlewares : es lo primero que hará la app por orden de linea
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false })); // parsea el body en formato urlencoded
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -41,6 +41,15 @@ app.use(function(req, res, next) {
 
 // error handler
 app.use(function(err, req, res, next) {
+ //compruebo si esun error de validación
+ if (err.array) {
+   const errorInfo = err.errors[0]; // err.array( {onlyFirsrError: true} )[0]
+   console.log(errorInfo) // si miras la terminal verás los errores y la info para rellenar la siguiente linea
+   err.message = `Error en ${errorInfo.location}, parámetro ${errorInfo.path} ${errorInfo.msg}`;
+   err.status = 422; // para que nos de el nombre del eror en postman 
+  }
+
+
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

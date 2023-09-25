@@ -371,8 +371,6 @@ Has de intentar meter la menor funcionalidad en las vistas, las funcionalidades 
 
 ### Recibiendo parámetros
 
-http://127.0.0.1:3000/facturas/27
-
 
 route/index.js
 
@@ -382,6 +380,8 @@ route/index.js
  * al valor numero 66 de  /parametro_en_ruta/66
  * le podemos llamar por ejemplo numero:
  * '/parametro_en_ruta/:numero'
+ * 
+ *  Resultado en : http://127.0.0.1:3000/parametro_en_ruta/55
  */
 
 // Get /parametro_en_ruta/66
@@ -399,6 +399,8 @@ router.get('/parametro_en_ruta/:numero', (req, res, next) => {
 /**
  * Creamos otro middelware con un parámetro opcional
  * Opcional quiere decir que puede venir o no un valor 
+ * 
+ * Resultado en : http://127.0.0.1:3000/parametro_opcional/66
  */
 
 // Get /parametro_opcional/66
@@ -415,18 +417,155 @@ router.get('/parametro_en_ruta/:numero?', (req, res, next) => {
 
 /**
  * Creamos otro middelware con varios parámetros 
+ * Resultado en : http://127.0.0.1:3000/producto/pantalones/talla/34/color/rojo
  */
 // GET /producto/:nombre/talla/:talla/color/:color
 router.get("/producto/:nombre/talla/:talla/color/:color", (req, res, next) => {
   console.log(req.params)
-  const nombre = req.params.nombre;
-  const talla = req.params.talla;
-  const color = req.params.color;
+  // const nombre = req.params.nombre;
+  // const talla = req.params.talla;
+  // const color = req.params.color;
+
+  // la linea de abajo sería exactamente lo mismo que las treslineas de arriba
+  const {nombre, talla, color} = req.params;
+
+  res.send(`Me pediste ${nombre} talla ${talla} color ${color}`)
+
+})
+
+
+/**
+ * podemos añadir expresiones regulares para acotar
+ * 
+ * Resultado : http://127.0.0.1:3000/producto/pantalones/talla/XXL/color/rojo
+ */
+// GET /producto/:nombre/talla/:talla/color/:color
+router.get("/producto/:nombre/talla/:talla([0-9]+)/color/:color", (req, res, next) => {
+  console.log(req.params)
+  // const nombre = req.params.nombre;
+  // const talla = req.params.talla;
+  // const color = req.params.color;
+
+  // la linea de abajo sería exactamente lo mismo que las treslineas de arriba
+  const {nombre, talla, color} = req.params;
+
   res.send(`Me pedista ${nombre} talla ${talla} color ${color}`)
 
 })
 
+
+/**
+ * Vamos a conseguir una lista de usuarios
+ * vamos a /routes/users.js
+ * 
+ * 
+ */
+
+// Get user listing
+router.get('/', function(req, res, next) {
+  const usuarios = [
+    { nombre: 'alex', talla: '34', color: 'rojo' },
+    { nombre: 'pantalon', talla: '34', color: 'rojo' }
+  ]
+  
+
+  // mejor .json que .send
+  res.json(usuarios);
+})
+
+
+/**
+ * RECIBIENOD PARÁMETROS EN EL BODY
+ * Los recibimos en req.body. Esta forma no la podemos usar en GET ya que no usa body
+ * 
+ * respuesta http://127.0.0.1:3000/users/anuncios
+ */ 
+
+/**
+ * POSTMAN.COM nos permite hacer peticiones a servidores http como el nuestro y probar 
+ * api´s app webs, etc
+ */
+
+// POST / users (body)
+router.post('/', (req,res,next)=>{
+  console.log(req.body);
+  res.send('recibido');
+})
+
+/**
+ * devuelve la cabecera
+ * https://expressjs.com/en/4x/api.html#req.get
+ */
+
 ```
 
+### Validaciones
 
 
+```bash
+# https://github.com/ctavan/express-validator
+npm install express-validator
+```
+
+una vez instalada vamos a validar :
+
+```JS
+/** 
+ * /routers/users
+ * añado estas lineas para validad este middelware
+ */ 
+
+// validaciones
+const {query, validationResult } = require('express-validator');
+
+// Get user listing
+router.get('/', [    // defino la validaciones si es numerico
+  query('talla').isNumeric.withMessage('debe tener valor numérico')
+], function(req, res, next) {
+  validationResult(req).throw();  // añadimos la linea de va
+  const usuarios = [
+    { nombre: 'alex', talla: '34', color: 'rojo' },
+    { nombre: 'pantalon', talla: '34', color: 'rojo' }
+  ]
+
+  // query es un objeto del cual quier sacar la propiedad name
+  const filtroName = req.query.name;
+
+  if (filtroName) {
+    res.json(usuarios.filter(usuarios => usuarios.nombre === filtroName))
+  } else {
+    res.json(usuarios);
+  }
+  // mejor .json que .send
+});
+
+
+/**
+ *  voy a app.js
+ * 
+ * y compruebo si es un error de validación anadiendo estas lineas a error hadler
+ */
+
+// error handler
+app.use(function(err, req, res, next) {
+ //compruebo si esun error de validación
+ if (err.array) {
+   const errorInfo = err.errors[0]; // err.array( {onlyFirsrError: true} )[0]
+   console.log(errorInfo) // si miras la terminal verás los errores y la info para rellenar la siguiente linea
+   err.message = `Error en ${errorInfo.location}, parámetro ${errorInfo.path} ${errorInfo.msg}`
+ }
+
+
+
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
+});
+
+````
+
+con esto de antes conseguimos que los errores se controlen en toda la palicacion
