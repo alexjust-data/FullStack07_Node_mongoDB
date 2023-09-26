@@ -568,4 +568,26 @@ app.use(function(err, req, res, next) {
 
 ````
 
-con esto de antes conseguimos que los errores se controlen en toda la palicacion
+con esto de antes conseguimos que los errores se controlen en toda la valicacion.
+
+###  Middlewares de terceros
+
+Podemos instalarlos con npm y cargarlos como los anteriores.
+
+```bash
+$ npm install cookie-parser
+```
+
+```JS
+var cookieParser = require('cookie-parser');
+// load the cookie parsing middleware en la app.js
+app.use(cookieParser());
+
+
+// con esto nos aparecerá en el archivo package.json la dependencia:
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+
+```
+
+Hay una lista de los más usados en http://expressjs.com/resources/ middleware.html

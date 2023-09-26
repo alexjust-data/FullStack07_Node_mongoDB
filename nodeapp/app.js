@@ -46,7 +46,7 @@ app.use(function(err, req, res, next) {
    const errorInfo = err.errors[0]; // err.array( {onlyFirsrError: true} )[0]
    console.log(errorInfo) // si miras la terminal verás los errores y la info para rellenar la siguiente linea
    err.message = `Error en ${errorInfo.location}, parámetro ${errorInfo.path} ${errorInfo.msg}`;
-   err.status = 422; // para que nos de el nombre del eror en postman 
+   err.status = 422; // para que nos de el nombre del error en res.status(err.status || 500); como lo hemos configurado
   }
 
 
@@ -54,7 +54,7 @@ app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-  // render the error page
+  // render the error page : podemos responder con el error que le queramos pasar
   res.status(err.status || 500);
   res.render('error');
 });
