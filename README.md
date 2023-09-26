@@ -591,3 +591,30 @@ app.use(cookieParser());
 ```
 
 Hay una lista de los más usados en http://expressjs.com/resources/ middleware.html
+
+
+
+
+
+## MongoDB
+
+Ves a README.md
+
+```bash
+# descargo mongodb-macos-arm64-7.0.1.tgz
+# descomprimo y en creo carpeta data y dentro creo carpeta /db aquí guardaremos los ficeros 
+THIRD-PARTY-NOTICES
+README
+MPL-2
+macos_mongodb.plist
+LICENSE-Community.txt
+data / db
+bin
+
+
+# en terminal en la carpeta mongodb
+./bin/mongod --dbpath ./data/db
+
+# si quieres parar el servidor Ctrl + c
+```
+
