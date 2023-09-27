@@ -598,7 +598,7 @@ Hay una lista de los más usados en http://expressjs.com/resources/ middleware.h
 
 ## MongoDB
 
-Ves a README.md
+Ves a nodeapp/README.md
 
 ```bash
 # descargo mongodb-macos-arm64-7.0.1.tgz

@@ -13,7 +13,7 @@ var router = express.Router();
  */
 
 
-// validaciones
+// validaciones (fíjate que hay alternativas a sólo query,)
 const {query, validationResult } = require('express-validator');
 
 // Get user listing

@@ -101,3 +101,33 @@ cursonode> db.agentes.find()
 
 
 
+cursonode> db.agentes.insertOne({name: "Nuria", age:7, address: { city: "Madrid" }, phones: [662152145, 32652154]})
+    {
+    acknowledged: true,
+    insertedId: ObjectId("6512c00ef5596c4de4ecf742")
+    }
+cursonode> db.agentes.find()
+[
+  { _id: ObjectId("6512b43ff5596c4de4ecf73e"), name: 'Smith', age: 24 },
+  { _id: ObjectId("6512b4dff5596c4de4ecf73f"), name: 'Alex', age: 47 },
+  { _id: ObjectId("6512b623f5596c4de4ecf741"), name: 'John', age: 66 },
+  {
+    _id: ObjectId("6512c00ef5596c4de4ecf742"),
+    name: 'Nuria',
+    age: 7,
+    address: { city: 'Madrid' },
+    phones: [ 662152145, 32652154 ]
+  }
+]
+
+```
+
+Cliente gráfico para monodb https://nosqlbooster.com/ 
+
+
+### mongoose
+
+herramienta que nos permite trabajar más comodamente con mongodb
+
+
+
