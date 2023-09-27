@@ -4,7 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-require('./lib/connectMongoose')
+require('./lib/connectMongoose');
+
+const Agente = require('./models/Agente'); //en la app.js cargamos el modelo para verificar que funciona
+// lo utilizo para pedir una lista de Agentes
+Agente.find().then((results) => {
+  console.log(results);
+}).catch(err => console.log(err));
 
 var app = express();
 
