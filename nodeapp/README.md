@@ -1,46 +1,4 @@
-| :key:  [Recurso para crear un README.MD](https://www.readme.so) |
-| --- |
 
-
-# Nodeapp
-
-Website and API application
-
-## Install
-
-install dependencies:
-
-```sh
-$ npm install
-```
-
-Revies database cneection on /lib/connectMonggoose.js
-
-
-## Star 
-
-In production:
-
-
-```sh
-npm strat
-````
-
-
-In development:
-
-```sh
-npm run dev
-````
-
-
-## start a MongDB Server in MacOs or Linux
-
-From the folder of the server:
-
-```sh
-./bin/mongodb --dbpath ./data
-```
 
 
 
