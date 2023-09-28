@@ -19,24 +19,24 @@ install dependencies:
 $ npm install
 ```
 
-Revies database cneection on /lib/connectMonggoose.js
+Revies database conection on `/lib/connectMonggoose.js`
 
 
-## Star 
+## Start 
 
 In production:
 
 
 ```sh
-npm strat
-````
-
+npm start
+```
 
 In development:
 
+
 ```sh
 npm run dev
-````
+```
 
 
 ## start a MongDB Server in MacOs or Linux
