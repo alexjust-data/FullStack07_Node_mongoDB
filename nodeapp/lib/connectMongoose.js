@@ -14,6 +14,8 @@ mongoose.connection.on('open', () => {
 // queremos que se arranque cuando se arranque nuestra aplicacion
 mongoose.connect('mongodb://127.0.0.1/cursonode')
 
+module.exports = mongoose.connection;
+
 
 
 

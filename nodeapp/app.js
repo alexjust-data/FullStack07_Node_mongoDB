@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const basicAuthMiddleware = require('./lib/basicAuthMiddleware'); // lo pondré a quien quiera protejer
 
 require('./lib/connectMongoose');
 
@@ -11,10 +12,14 @@ require('./lib/connectMongoose');
  * me conecto al modulo de mongoDB
  */
 const Agente = require('./models/Agente'); //en la app.js cargamos el modelo para verificar que funciona
-// lo utilizo para pedir una lista de Agentes
-Agente.find().then((results) => {
-  console.log(results);
-}).catch(err => console.log(err));
+
+/**
+ * lo utilizo para pedir una lista de Agentes
+ */
+
+// Agente.find().then((results) => {
+//   console.log(results);
+// }).catch(err => console.log(err));
 
 var app = express();
 
@@ -44,15 +49,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 /**
  * rutas del API
  */
-app.use('/api/agentes', require('./routes/api/agentes'));
+app.use('/api/agentes', basicAuthMiddleware, require('./routes/api/agentes'));// lo pondré a quien quiera protejer
 
 /**
  * Usamos aquí las rutas del website : devuelven páginas
  */
 // carga ./routes/index cuando llegues a /
-app.use('/', require('./routes/index'));
+app.use('/', basicAuthMiddleware, require('./routes/index'));// lo pondré a quien quiera protejer
 // carga ./routes/index cuando llegues a /users
-app.use('/users', require('./routes/users'));
+app.use('/users', basicAuthMiddleware, require('./routes/users'));// lo pondré a quien quiera protejer
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -6,19 +6,49 @@ const router = express.Router();
 const Agente = require('../../models/Agente');
 
 // GET Api agentes
-// Devuelve una lista de agentes
+// CONTROLADOR DE AGENTES
+// Devuelve una lista de Agentes
 router.get('/', async (req, res, next) => {
 
     try {
+        // filtros
+        // http://127.0.0.1:3000/api/agentes?name=Jones
+        const filterByName = req.query.name;
+        const filtreByAge = req.query.age;
 
-        const agentes = await Agente.find();
+        // paginación
+        // http://127.0.0.1:3000/api/agentes?skip=2&limit=2
+        const skip = req.query.skip;
+        const limit = req.query.limit;
 
-        //throw new Error('fallo forzado');
-        
-        res.json({
-            // results: [  name: "Smith", age: 30} ]
-            results: agentes
-        })
+        // ordenación
+        // http://127.0.0.1:3000/api/agentes?sort=-age%20name
+        const sort = req.query.sort;
+
+        // field selection
+        // http://localhost:3000/api/agentes?fields=name%20-_id%20address
+        const fields = req.query.fields;
+    
+        const filtro = {};
+    
+        if (filterByName) { // regla general : cuando estés creanfo un filtro --> pon un indice en el modelo [Agentes.js]
+          filtro.name = filterByName;
+        }
+    
+        if (filtreByAge) { // regla general : cuando estés creanfo un filtro --> pon un indice en el modelo [Agentes.js]
+          filtro.age = filtreByAge;
+        }
+    
+        const agentes = await Agente.lista(filtro, skip, limit, sort, fields);
+
+        // probamos un método de instancia
+        // agentes.forEach(agente => {
+        //     agente.saluda();
+        // })
+    
+
+        res.json({ results: agentes })
+
     } catch (err) {
         next(err);
     }
@@ -27,6 +57,7 @@ router.get('/', async (req, res, next) => {
 
 
 // GET /api/agentes/(_id)
+// CONTROLADOR DE id´s
 // busca un agente que tenga ese :id
 router.get('/:id', async (req, res, next) => {
     try {

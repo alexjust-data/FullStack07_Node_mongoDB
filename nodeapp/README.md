@@ -1,7 +1,37 @@
 
+# NodeApp
 
+Website and PAI application
 
+## Install
 
+INstall dependencies:
+
+```sh
+$ npm install
+```
+
+Review database connection on /lib/connectMongoose.js (see "Start a MongoDB Server in MacOS or Linux")
+
+Load initial data:
+
+```sh
+# this command deletes all the data in the database and create default data
+$ npm run init-db
+```
+
+## Start
+
+In production:
+
+```sh
+npm start
+```
+In development:
+
+```sh
+npm run dev##
+````
 
 # mis notas
 
@@ -136,6 +166,33 @@ Cliente gráfico para monodb https://nosqlbooster.com/
 
 herramienta que nos permite trabajar más comodamente con mongodb
 
+Al crear un modelo, por ejemplo este 
+
+```js
+var mongoose = require('mongoose');
+var agenteSchema = mongoose.Schema({ 
+    name: String,
+    age: Number
+});
+mongoose.model('Agente', agenteSchema);
+```
+tenemos diferentes tipos String, Number ¿qué tipos podemos utilizar? Aquí tienes un resumen de los que piedes usar https://mongoosejs.com/docs/schematypes.html
+
+String  -  
+Number  -  
+Date  -  
+Buffer  -  
+Boolean  -  
+Mixed  - Una determinada propiedad puede tener cualquier cosa  
+ObjectId  -  
+Array  -  
+Decimal128  -  
+Map  -  
+Schema  -  
+UUID  -  
+BigInt  - 
+
+
 
 
 ### API Endpoints
@@ -149,6 +206,15 @@ herramienta que nos permite trabajar más comodamente con mongodb
             "age": 222
         }, ...
 ```
+
+
+#### Consumir Api´s de terceros
+
+
+
+
+
+
 
 
 

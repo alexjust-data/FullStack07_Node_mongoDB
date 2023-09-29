@@ -647,8 +647,6 @@ Hay una lista de los más usados en http://expressjs.com/resources/ middleware.h
 
 ## MongoDB
 
-Ves a nodeapp/README.md
-
 ```bash
 # descargo mongodb-macos-arm64-7.0.1.tgz
 # descomprimo y en creo carpeta data y dentro creo carpeta /db aquí guardaremos los ficeros 
@@ -667,3 +665,46 @@ bin
 # si quieres parar el servidor Ctrl + c
 ```
 
+Ves a nodeapp/README.md y verás como se trabaja
+
+Si estás arrancando de nuevo la aplicación...
+
+ve a terminal y apunta a las carpetas 
+
+```bash
+% pwd
+
+`/Applications/mongodb-macos-x86_64-7.0.1`
+
+# arranca la base de datos
+% ./bin/mongod --dbpath ./data/db
+```
+
+vete a la terminal de VSC y vete a la applicación que has creado
+
+```bash
+% pwd
+
+`/Users/alex/Desktop/FullStack_Node_mongoDB/nodeapp`
+
+# arranca la app
+% npm run dev
+```
+
+verás en NslBooster
+
+![](/img/2bbdd.png)
+
+
+
+# Despliego per primera vez en entorno
+
+Me interesa que esos datos iniciales se puedan crear un script que se ejecute al crear la aplicacion por primera vez  y meta sus datos inciales en la base de datos.
+
+```bash
+
+# /nodeapp/<creo fichero initDB.js>
+
+$ npm run init-db
+
+```
