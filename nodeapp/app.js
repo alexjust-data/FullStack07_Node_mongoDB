@@ -4,6 +4,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const basicAuthMiddleware = require('./lib/basicAuthMiddleware'); // lo pondré a quien quiera protejer
+const swaggerMiddleware = require('./lib/swaggerMiddleware');
+
 
 require('./lib/connectMongoose');
 
@@ -49,16 +51,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 /**
  * rutas del API
  */
+app.use('/api-doc', swaggerMiddleware);
 app.use('/api/agentes', basicAuthMiddleware, require('./routes/api/agentes'));// lo pondré a quien quiera protejer
 
 /**
  * Usamos aquí las rutas del website : devuelven páginas
  */
 // carga ./routes/index cuando llegues a /
-app.use('/', basicAuthMiddleware, require('./routes/index'));// lo pondré a quien quiera protejer
+app.use('/',  require('./routes/index'));// lo pondré a quien quiera protejer (se lo he quitado)
 // carga ./routes/index cuando llegues a /users
-app.use('/users', basicAuthMiddleware, require('./routes/users'));// lo pondré a quien quiera protejer
-
+app.use('/users',  require('./routes/users'));// lo pondré a quien quiera protejer (se lo he quitado)
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

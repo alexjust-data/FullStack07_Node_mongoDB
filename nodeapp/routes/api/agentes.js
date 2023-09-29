@@ -8,6 +8,17 @@ const Agente = require('../../models/Agente');
 // GET Api agentes
 // CONTROLADOR DE AGENTES
 // Devuelve una lista de Agentes
+
+/** DOC PARA EL API
+ * @openapi
+ * /api/agentes:
+ *  get:
+ *   description: Devuelve una lista de agentes
+ *   responses:
+ *    200:
+ *     description: Devuelve JSON
+ */
+
 router.get('/', async (req, res, next) => {
 
     try {
