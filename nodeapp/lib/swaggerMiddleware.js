@@ -18,7 +18,7 @@ const options = {
    */
 
   //apis: ['swagger.yml'] // <-- cargaría el archivo
-  apis: ['./routes/**/*.js'] // <-- cargaría esto del archivo :
+  apis: ['./routes/**/*.js'] // <-- cargaría esto del archivo *.js (ve a mirarlo):
                                       /** DOC PARA EL API
                                        * @openapi
                                        * /api/agentes:

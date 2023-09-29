@@ -212,7 +212,49 @@ BigInt  -
 
 
 
+### Documentacion API
 
+https://editor.swagger.io/
+
+minuto 1:30 día 6
+
+Generar especificación desde código o YAML (parse el documento de https://editor.swagger.io/)
+
+https://github.com/Surnet/swagger-jsdoc
+
+lo añadimos en app.js para que cuando haga un apetición en localhost:3000/api-doc aparezca la documentacion
+le podríamos poner el `swaggerMiddleware`
+
+Middleware de Express con Swagger UI
+
+https://github.com/scottie1984/swagger-ui-express
+
+
+
+
+### importante SCRIPT QUE PRCESA DATOS
+
+/ejemplos/ejemplo-procesar-csv
+
+```sh
+(base) alex@Alexs-MacBook-Pro FullStack_Node_mongoDB % cd ejemplos/ejemplo-procesar-csv 
+(base) alex@Alexs-MacBook-Pro ejemplo-procesar-csv % npm init -y
+
+npm install nodemon -D
+
+npx nodemon
+
+# parsea ficheros csv y convierteJson to Csv
+npm repo papaparse  # https://github.com/mholt/PapaParse
+npm install papaparse
+
+$ ejemplos/ejemplo-procesar-csv
+$ npm install mongodb
+npx nodemon
+
+
+$ npm install progres
+```
 
 
 
